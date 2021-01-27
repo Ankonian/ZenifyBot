@@ -23,9 +23,12 @@ async def on_message(message):
       for guild in client.guilds:
             print(str(guild.members))
             async for member in guild.fetch_members():
-                if not member.bot and not member.name == 'PimpDaddyMagic':
+                if not member.bot and not str(member.top_role) == 'PimpDaddy':
                     print(member.name + " is not a bot")
-                    await member.edit(nick="Zen " + member.name)
+                    print(member.name + " has " + str(member.top_role) + " role")
+                    print("Adding Zen to " + member.name + "\'s nickname")
+                    if not member.nick.lower().count("zen") > 0:
+                        await member.edit(nick="Zen " + member.name)
                 
                 
                 
@@ -34,6 +37,6 @@ async def on_message(message):
 
 @client.event
 async def on_member_join(member):
-    await member.edit(nick="Zen")
-
-client.run('ODAzODExMTA1MDgzODgzNTUx.YBDNbQ.ln5Co3f7OkzsVeV4u9_xe6xeDgM')
+    await member.edit(nick="Zen " + member.name)
+    
+client.run('LOL you thought')
